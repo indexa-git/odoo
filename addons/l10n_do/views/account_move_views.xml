@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='l10n_latam_document_number']"
+                   position="attributes">
+                <attribute name="attrs">{
+                    'required': [('l10n_latam_manual_document_number', '=', True), ('l10n_latam_use_documents', '=', True), ('country_code', '=','DO')],
+                    'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('country_code', '=', 'DO'), '&amp;', ('posted_before', '=', True), ('country_code', '=', 'DO')]}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
