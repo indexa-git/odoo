@@ -62,7 +62,14 @@ class L10nLatamDocumentType(models.Model):
     )
 
     def _is_l10n_do_doc_type_vendor(self):
-        return self.l10n_do_ncf_type in ["11", "13", "17", "41", "43", "47"]
+        return self.l10n_do_ncf_type in [
+            "informal",
+            "minor",
+            "exterior",
+            "e-informal",
+            "e-minor",
+            "e-exterior",
+        ]
 
     def _format_document_number(self, document_number):
         """Make validation of Import Dispatch Number
