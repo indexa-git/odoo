@@ -218,8 +218,11 @@ class AccountMove(models.Model):
 
     def _get_name_invoice_report(self):
         self.ensure_one()
-        if self.l10n_latam_use_documents and self.country_code == "DO":
-            return "l10n_do.report_invoice_document_inherited"
+        if (
+            self.l10n_latam_use_documents
+            and self.company_id.account_fiscal_country_id.code == "DO"
+        ):
+            return "l10n_do.report_invoice_document"
         return super()._get_name_invoice_report()
 
     @api.constrains("move_type", "l10n_latam_document_type_id")
