@@ -32,13 +32,13 @@
                 </span>
                 <br/>
                 <span>
-                    <strong>Fecha Emisión:</strong>
+                    <strong>Issuing Date:</strong>
                     <span t-field="o.invoice_date"/>
                 </span>
                 <br/>
                 <span
                     t-if="o.invoice_date_due and o.move_type == 'out_invoice' and o.state == 'posted'">
-                    <strong>Vence:</strong>
+                    <strong>Expire:</strong>
                     <span t-field="o.invoice_date_due"/>
                 </span>
             </div>
@@ -55,7 +55,7 @@
                 <br/>
                 <span
                     t-if="(o.move_type == 'out_refund' or o.move_type == 'in_refund' or o.debit_origin_id) and o.reversed_entry_id">
-                    <strong>NCF modificado:</strong>
+                    <strong>Modified NCF:</strong>
                     <span t-field="o.reversed_entry_id.l10n_latam_document_number"/>
                     <br/>
                 </span>
@@ -66,6 +66,9 @@
                           and o.l10n_latam_document_number
                           and o.l10n_latam_document_type_id
                           and o.l10n_latam_document_type_id.doc_code_prefix[1:] not in ('32', '34', '02')">
+                    <strong>
+                        Valid until:
+                    </strong>
                     <span id="ecf_exp_date"
                           t-field="o.l10n_do_ncf_expiration_date"/>
                 </span>
@@ -78,27 +81,27 @@
             <div class="col-auto col-7 mw-100 mb-2">
                 <strong>
                     <t t-if="vat_len == 9">RNC:</t>
-                    <t t-elif="vat_len == 11">Cédula:</t>
-                    <t t-else="">ID Cliente:</t>
+                    <t t-elif="vat_len == 11">Tax ID:</t>
+                    <t t-else="">Customer ID:</t>
                 </strong>
                 <span class="m-0" t-out="o.commercial_partner_id.vat or ''"/>
                 <br/>
                 <strong>
-                    <t t-if="vat_len == 9">Razón Social:</t>
-                    <t t-else="">Nombre:</t>
+                    <t t-if="vat_len == 9">Business Name:</t>
+                    <t t-else="">Name:</t>
                 </strong>
                 <t t-if="o.partner_id.is_company or not o.partner_id.parent_id">
                     <span class="m-0" t-field="o.partner_id.name"/>
                     <br/>
                     <t t-if="o.partner_id.phone">
-                        <strong>Tel.:</strong>
+                        <strong>Phone.:</strong>
                         <span t-field="o.partner_id.phone"/>
                         <t t-if="o.partner_id.mobile">
                             <span>/</span>
                         </t>
                     </t>
                     <t t-if="o.partner_id.mobile">
-                        <strong>Cel.:</strong>
+                        <strong>Mobile.:</strong>
                         <span t-field="o.partner_id.mobile" widget="phone"/>
                     </t>
                 </t>
@@ -107,7 +110,7 @@
                        t-value="o.partner_id.commercial_partner_id"/>
                     <span class="m-0" t-field="commercial_partner_id.name"/>
                     <br/>
-                    <strong>Contacto:</strong>
+                    <strong>Contact:</strong>
                     <span t-field="o.partner_id.name"/>
                     <br/>
                     <t t-if="commercial_partner_id.phone">
@@ -118,7 +121,7 @@
                         </t>
                     </t>
                     <t t-if="commercial_partner_id.mobile">
-                        <strong>Cel.:</strong>
+                        <strong>Mobile.:</strong>
                         <span t-field="commercial_partner_id.mobile"
                               widget="phone"/>
                     </t>
@@ -128,11 +131,11 @@
             </div>
             <div class="col-auto col-2 mw-100 mb-2" t-if="o.invoice_origin"
                  name="origin">
-                <strong>Origen:</strong>
+                <strong>Origin:</strong>
                 <p class="m-0" t-field="o.invoice_origin"/>
             </div>
             <div class="col-auto col-2 mw-100 mb-2" t-if="o.ref" name="reference">
-                <strong>Referencia:</strong>
+                <strong>Reference:</strong>
                 <p class="m-0" t-field="o.ref"/>
             </div>
         </div>
@@ -247,12 +250,12 @@
                      style="float: right;">
                     <span>
                         <strong>Original:</strong>
-                        Cliente
+                        Customer
                     </span>
                     <br/>
                     <span>
-                        <strong>Copia:</strong>
-                        Vendedor
+                        <strong>Copy:</strong>
+                        Salesperson
                     </span>
                     <br/>
                     <br/>

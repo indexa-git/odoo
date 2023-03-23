@@ -8,7 +8,7 @@ class AccountJournal(models.Model):
     l10n_do_document_type_ids = fields.One2many(
         "l10n_do.account.journal.document_type",
         "journal_id",
-        string="Document types",
+        string="Document Types",
         copy=False,
     )
 
