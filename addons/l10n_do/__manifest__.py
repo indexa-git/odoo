@@ -1,9 +1,9 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Dominican Republic - Accounting',
-    'version': '2.0',
-    'category': 'Accounting/Localizations/Account Charts',
-    'description': """
+    "name": "Dominican Republic - Accounting",
+    "version": "2.0",
+    "category": "Accounting/Localizations/Account Charts",
+    "description": """
 
 Localization Module for Dominican Republic
 ===========================================
@@ -70,19 +70,29 @@ en Odoo):
 110101- Caja
 11010101 Caja General
     """,
-    'author': 'Gustavo Valverde - iterativo | Consultores de Odoo',
-    'website': 'http://iterativo.do',
-    'depends': [
-        'account',
-        'base_iban',
+    "author": "Gustavo Valverde - iterativo | Consultores de Odoo",
+    "website": "http://iterativo.do",
+    "depends": [
+        "l10n_latam_invoice_document",
+        "base_iban",
     ],
-    'data': [
-        'data/account_account_tag_data.xml',
-        'data/account_tax_report_data.xml',
-        'data/l10n_do_res_partner_title.xml',
+    "data": [
+        "data/l10n_latam.document.type.csv",
+        "data/account_account_tag_data.xml",
+        "data/account_tax_report_data.xml",
+        "data/l10n_do_res_partner_title.xml",
     ],
-    'demo': [
-        'demo/demo_company.xml',
+    "demo": [
+        "security/ir.model.access.csv",
+        "demo/demo_company.xml",
+        "demo/res_partner_demo.xml",
+        "views/account_journal_views.xml",
+        "views/l10n_latam_document_type_views.xml",
+        "views/report_invoice.xml",
+        "views/report_templates.xml",
+        "views/res_company_views.xml",
+        "views/res_config_settings_view.xml",
+        "views/res_partner_views.xml",
     ],
-    'license': 'LGPL-3',
+    "license": "LGPL-3",
 }
