@@ -166,7 +166,9 @@ class AccountMove(models.Model):
         amount_field = company_currency and "balance" or "price_subtotal"
         sign = -1 if (company_currency and self.is_inbound()) else 1
 
-        itbis_tax_group = self.env.ref("l10n_do.group_itbis", False)
+        itbis_tax_group = self.env.ref(
+            "account.%s_group_itbis" % self.company_id.id, False
+        )
 
         taxed_move_lines = self.line_ids.filtered("tax_line_id")
         itbis_taxed_move_lines = taxed_move_lines.filtered(
